@@ -8,7 +8,6 @@ markdown: kramdown
 disqus: dbyll
 google_analytics: dbyll
 title: Saleh Parsa
-
 defaults:
   -
     scope:
@@ -22,9 +21,9 @@ author:
   email: salehp@gmail.com
   github: salehparsa
   twitter: salehp
-  pinterest: asd123
+  pinterest: salehlike
   linkedin: saleh-parsa-49554072
-  bio: Your stylish, minimalist theme!
+  bio: This blog contains my brain's dump!
   email_md5: 718f0a1709df67b1492f7e7cba5422c6
 
 rss_path: feed.xml
