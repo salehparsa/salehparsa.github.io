@@ -75,6 +75,7 @@ Now we want to find:
 saleh@Saleh:~/Personal Project$ grep ^[Ll]. saleh.txt 
 ~~~~~~~~
 Result:
+
 ~~~~~~~~
 Let's search for my name "saleh"
 Love my wife
@@ -86,6 +87,7 @@ love my life
 saleh@Saleh:~/Personal Project$ grep saleh saleh.txt
 ~~~~~~~~
 Result:
+
 ~~~~~~~~
 Let's search for my name "saleh"
 ~~~~~~~~
@@ -95,6 +97,7 @@ Let's search for my name "saleh"
 saleh@Saleh:~/Personal Project$ grep ^L saleh.txt 
 ~~~~~~~~
 Result:
+
 ~~~~~~~~
 Let's search for my name "saleh"
 Love my wife
@@ -107,6 +110,7 @@ Love my wife
 saleh@Saleh:~/Personal Project$ grep -v [A-Za-z] saleh.txt 
 ~~~~~~~~
 Result:
+
 ~~~~~~~~
 1987 + 11 + 18 = 2016
 ~~~~~~~~
@@ -118,6 +122,7 @@ Result:
 saleh@Saleh:~/Personal Project$ grep [0-9] saleh.txt 
 ~~~~~~~~
 Result:
+
 ~~~~~~~~
 This text file contains 10 lines
 I born on 1987
