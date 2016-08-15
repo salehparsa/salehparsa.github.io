@@ -6,7 +6,7 @@ exclude: ["README.md"] # files to exclude
 highlighter: rouge
 markdown: kramdown
 disqus: salehparsa
-google_analytics: dbyll
+google_analytics: salehp
 title: Saleh Parsa
 defaults:
   -
