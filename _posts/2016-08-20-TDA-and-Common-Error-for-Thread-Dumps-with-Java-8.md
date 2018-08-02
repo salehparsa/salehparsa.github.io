@@ -7,7 +7,7 @@ fullview: true
 comments: true
 ---
 
-The external thread dumps are the best option if you want to investigate performance degradation of Java applications. Almost all geeks out there who are dealing with Thread Dumps are familiar with awesome tools called <b><a href="https://java.net/projects/tda/">TDA</a></b>. However, once in a while when you are generating your thread dumps for applications with Java 8, you will encounter to following error in console:
+The external thread dumps are the best option if you want to investigate performance degradation of Java applications. Almost all geeks out there who are dealing with Thread Dumps are familiar with awesome tools called <b><a href="https://github.com/irockel/tda">TDA</a></b>. However, once in a while when you are generating your thread dumps for applications with Java 8, you will encounter to following error in console:
 
 {% highlight java %}
 Exception in thread "AWT-EventQueue-0" java.lang.NumberFormatException: For input string: "5 os_prio=0"
