@@ -1,0 +1,23 @@
+<p>The external thread dumps are the best option if you want to investigate performance degradation of Java applications. Almost all geeks out there who are dealing with Thread Dumps are familiar with awesome tools called <b><a href="https://github.com/irockel/tda">TDA</a></b>. However, once in a while when you are generating your thread dumps for applications with Java 8, you will encounter to following error in console:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">Exception</span> <span class="n">in</span> <span class="n">thread</span> <span class="s">"AWT-EventQueue-0"</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">NumberFormatException</span><span class="o">:</span> <span class="nc">For</span> <span class="n">input</span> <span class="nl">string:</span> <span class="s">"5 os_prio=0"</span>
+  <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">NumberFormatException</span><span class="o">.</span><span class="na">forInputString</span><span class="o">(</span><span class="nc">NumberFormatException</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">65</span><span class="o">)</span>
+  <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="nc">Long</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">589</span><span class="o">)</span>
+  <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Long</span><span class="o">.&lt;</span><span class="n">init</span><span class="o">&gt;(</span><span class="nc">Long</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">965</span><span class="o">)</span>
+  <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">pironet</span><span class="o">.</span><span class="na">tda</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">ThreadsTableModel</span><span class="o">.</span><span class="na">getValueAt</span><span class="o">(</span><span class="nc">ThreadsTableModel</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">80</span><span class="o">)</span>
+  <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">pironet</span><span class="o">.</span><span class="na">tda</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">TableSorter</span><span class="o">.</span><span class="na">getValueAt</span><span class="o">(</span><span class="nc">TableSorter</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">285</span><span class="o">)</span>
+ <span class="o">....</span></code></pre></figure>
+
+<p>TDA team investigated this issue and they belive it’s related to fact that an <em>os_prio</em> culmn exist between <em>prio</em> and <em>tid</em> and they fixed it <a href="https://github.com/irockel/tda/issues/6">here</a>. However, if you are not willing to apply the fix or changing your TDA version, you can clean up your Thread dumps with following <b>regex</b>:</p>
+
+<h3 id="for-linux">For Linux:</h3>
+
+<figure class="highlight"><pre><code class="language-regex" data-lang="regex">sed -i 's/prio=[0-9]\{1,2\} os_prio=-\?[0-9]\{1,2\}/prio=5/g' &lt;filename&gt;</code></pre></figure>
+
+<h2 id="for-mac">For Mac:</h2>
+
+<figure class="highlight"><pre><code class="language-regex" data-lang="regex">sed -i '' -E 's/prio=[0-9]{1,2} os_prio=-?[0-9]{1,2}/prio=5/g' &lt;filename&gt;</code></pre></figure>
+
+<p>Credit of above solution goes to Atlassian Team <em>(<a href="https://confluence.atlassian.com/kb/generating-a-thread-dump-794369342.html">here</a>)</em>.</p>
+
+<p><a class="btn btn-default" href="https://github.com/irockel/tda">TDA is available in GitHub</a></p>

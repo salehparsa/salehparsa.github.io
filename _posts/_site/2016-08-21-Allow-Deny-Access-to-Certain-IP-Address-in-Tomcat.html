@@ -1,0 +1,42 @@
+<p>Tomcat is one of the most powerful webserver for implementing Java applications. As an administrator, you may need to restrict access to your webserver and practically you have got lots of options to achieve this requirement. However, One of the easiest ways to allow or deny access to Tomcat is via Remote Address filter of Tomcat <em>valves</em> component. You can achieve it by adding following component to your <em>server.xml</em> file:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;Valve className="org.apache.catalina.valves.RemoteAddrValve" Attribute" /&gt;
+</code></pre></div></div>
+
+<p>According to <a href="https://tomcat.apache.org/tomcat-8.0-doc/config/valve.html"><b>Apache Tomcat documentation</b></a>, Remote Address has following attributes:</p>
+
+<ul>
+  <li>allow</li>
+  <li>deny</li>
+  <li>denyStatus</li>
+  <li>addConnectorPort</li>
+  <li>invalidAuthenticationWhenDeny</li>
+</ul>
+
+<h5>Allow Certain IP Addresses:</h5>
+
+<p>For example, if you want to allow IP <em>x.x.x.x</em> , <em>y.y.y.y</em> and subnet of <em>z.z.z.*</em> you need to add following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="x.x.x.x,y.y.y.y,z.z.z.*" /&gt;
+</code></pre></div></div>
+
+<p>Above configuration forces Tomcat to allow clients with these specific IP addresses only.</p>
+
+<h5>Allow localhost to access via default port while other addresses are accessible via 1234:</h5>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;Valve className="org.apache.catalina.valves.RemoteAddrValve"
+   addConnectorPort="true"
+   allow="127\.\d+\.\d+\.\d+;\d*|::1;\d*|0:0:0:0:0:0:0:1;\d*|.*;1234"/&gt;
+</code></pre></div></div>
+
+<p>With above configuration, localhost <em>(127.0.0.1)</em> is able to access tomcat via default connector port while all other users are accessing tomcat via port 1234.</p>
+
+<p>In this example, <em>addConnectorPort</em> configured as true and it means, tomcat compares allowed IP addresses against <b>IP:PORT</b> where IP is the client IP and PORT is the <b>Tomcat connector port</b>.</p>
+
+<h4>Note:</h4>
+
+<ul>
+  <li>If you are using DHCP, this configuration may not be suitable for you since your IP Address may change via DHCP.</li>
+  <li>If your application is integrated with other applications, you need to ensure that IP Address of those applications is listed in Tomcat. Otherwise, they are not able to communicate.</li>
+  <li>You are able to add Regex instead of individually adding IP Addresses</li>
+</ul>

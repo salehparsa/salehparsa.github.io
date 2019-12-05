@@ -1,0 +1,110 @@
+<p>The first topic that I’ve chosen to export it from my mind is <strong>Regex</strong>. While <strong>Regex</strong> is handy and you can pick it up quickly, it causes tons of frustration. You can use it everywhere when you want to search for a specific part of your file, no matter if it’s a <strong>Sublime Text Editor</strong> or a <strong>grep</strong> command in Linux.</p>
+
+<p>In this article, I show some basic examples of <strong>Regex</strong> with <strong>grep</strong> in a Linux Terminal. For those who may not know what’s grep for: grep is a single command in Linux for searching a text data with a specific patterns and it uses as following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grep [options] PATTERN [file]
+</code></pre></div></div>
+
+<p>If you want to know available options of grep, you can easily go through the <em>grep –help</em> <em>(in Ubuntu)</em> since it contains all options that you have for using this command. Anyway, let’s go back to the topic:</p>
+
+<p>We use Regext for finding the pattern that we want. However, Regex uses special expressions in combination with any of the following:</p>
+
+<h4>Literal</h4>
+<p>Any character used in a search or matching expression</p>
+<h4>Metachracter</h4>
+<p>One or more special characters with special meaning</p>
+<h4>Escape Sequence</h4>
+<p>Use of metachracters as a literal</p>
+
+<p>Most difficult part of using <em>Regex</em> is how to build a pattern for finding what we want! Following are some basic options of <em>Regex</em>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ ]     Matches anything inside brackets. It can be either number or letters but.
+        Be aware that, it's case sensitive.
+
+-    This option creates a range. For example, 1-9 means between 1 to 9 OR a-z means between a to z.
+    Be aware that, it's case sensitive and you shouldn't use space between.
+
+.    Find any character in its position.
+
+*    Matches any character zero or more times
+
+^    Negates a search when used inside brackets.
+    The caret is used outside brackets to find only lines that begin with a given string.
+
+( )    Combine multiple patterns.
+
+|    Find left or right values. Mostly used with () option.
+
+$    Find line base on their ending character. It's Similar to caret outside brackets.
+</code></pre></div></div>
+
+<p>Well, we’re the generation of UI so it’s mind blowing to go through all of them without any example. Let’s assume that we have following text file:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Here is my sample text file
+This text file contains 10 lines
+
+Let's search for my name "saleh"
+Love my wife
+love my life
+
+I born in 1987
+November is the best month
+
+1987 + 11 + 18 = 2016
+
+WoW, my birthday equation is the year that I posted this!
+</code></pre></div></div>
+
+<p>Now we want to find:</p>
+
+<h4>All lines that start with either L or l</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>saleh@Saleh:~/Personal Project$ grep ^[Ll]. saleh.txt 
+</code></pre></div></div>
+<p>Result:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Let's search for my name "saleh"
+Love my wife
+love my life
+</code></pre></div></div>
+
+<h4>Find saleh:</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>saleh@Saleh:~/Personal Project$ grep saleh saleh.txt
+</code></pre></div></div>
+<p>Result:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Let's search for my name "saleh"
+</code></pre></div></div>
+
+<h4>Find all Lines start with L</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>saleh@Saleh:~/Personal Project$ grep ^L saleh.txt 
+</code></pre></div></div>
+<p>Result:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Let's search for my name "saleh"
+Love my wife
+</code></pre></div></div>
+
+<p><em>Hope she visits this site and see this</em></p>
+
+<h4>Find Numbers Only</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>saleh@Saleh:~/Personal Project$ grep -v [A-Za-z] saleh.txt 
+</code></pre></div></div>
+<p>Result:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1987 + 11 + 18 = 2016
+</code></pre></div></div>
+
+<p><strong>-v prints non-matching lines and it’s one of the grep options</strong></p>
+
+<h4>Find any lines that has number</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>saleh@Saleh:~/Personal Project$ grep [0-9] saleh.txt 
+</code></pre></div></div>
+<p>Result:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This text file contains 10 lines
+I born on 1987
+1987 + 11 + 18 = 2016
+</code></pre></div></div>
+
+<p>You can always use the combination of above for building your search patterns. However, don’t forget that prior to going through the patterns you need to know what you want to find. Hope it helps.</p>
