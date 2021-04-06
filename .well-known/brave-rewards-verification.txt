@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: salehparsa.github.io
+Token: b45a2d1ee116aba093ed5e885b060df5297a20da48b5ba4dbbce19d9c704517a

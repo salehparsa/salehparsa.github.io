@@ -4,6 +4,7 @@ paginate: 10 # pagination based on number of posts
 paginate_path: "page:num"
 exclude: ["README.md"] # files to exclude
 exclude: [vendor]
+include: [".well-known", "brave-rewards-verification.txt"]
 highlighter: rouge
 markdown: kramdown
 disqus: salehparsa
